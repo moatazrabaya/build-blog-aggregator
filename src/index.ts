@@ -1,6 +1,14 @@
 
+import { setUser } from "./config.js";
+import { readConfig } from "./config.js";
+
 function main() {
-  console.log("Hello, world!");
+  setUser("moataz");
+
+  const config = readConfig();
+
+  console.log(`dbUrl: ${config.dbUrl}`);
+  console.log(`currentUserName: ${config.currentUsername}`);
 }
 
 main();
