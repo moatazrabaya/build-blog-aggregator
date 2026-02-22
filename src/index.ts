@@ -1,14 +1,25 @@
 
-import { setUser } from "./config.js";
-import { readConfig } from "./config.js";
+import type {CommandsRegistry} from "./commands/commands.js";
+import {registerCommand, runCommand} from "./commands/commands.js";
+import {handlerLogin} from "./commands/login_command.js";
 
 function main() {
-  setUser("moataz");
+  
+  const args = process.argv.slice(2);
 
-  const config = readConfig();
+  if(args.length === 0){
+    console.log("There is no arguments");
+    process.exit(1);
+  }
 
-  console.log(`dbUrl: ${config.dbUrl}`);
-  console.log(`currentUserName: ${config.currentUsername}`);
+  let registry: CommandsRegistry = {};
+  const commandName = args[0];
+  const commandArgs = args.slice(1);
+  
+  registerCommand(registry, "login", handlerLogin);
+  
+  runCommand(registry, commandName, ...commandArgs);
+  
 }
 
 main();

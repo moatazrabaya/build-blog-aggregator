@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
+    "drizzle-orm": "^0.45.1",
     "esbuild": "^0.27.3",
     "get-tsconfig": "^4.13.6",
+    "postgres": "^3.4.8",
     "resolve-pkg-maps": "^1.0.0",
     "undici-types": "^7.18.2"
   },
   "devDependencies": {
     "@types/node": "^25.3.0",
+    "drizzle-kit": "^0.31.9",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
