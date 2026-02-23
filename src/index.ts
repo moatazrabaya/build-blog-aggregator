@@ -2,6 +2,7 @@
 import type {CommandsRegistry} from "./commands/commands.js";
 import {registerCommand, runCommand} from "./commands/commands.js";
 import {handlerLogin} from "./commands/login_command.js";
+import {handlerRegister} from "./commands/register_command.js";
 
 async function main() {
   
@@ -15,11 +16,20 @@ async function main() {
   let registry: CommandsRegistry = {};
   const commandName = args[0];
   const commandArgs = args.slice(1);
-  
+
   registerCommand(registry, "login", handlerLogin);
+
+  registerCommand(registry, "register", handlerRegister);
   
-  await runCommand(registry, commandName, ...commandArgs);
-  
+  try{
+    await runCommand(registry, commandName, ...commandArgs);
+  } catch (err){
+    if(err instanceof Error)
+      console.error(`Error running command ${commandName}: ${err.message}`);
+    else
+      console.error(`Error running command ${commandName}: ${err}`);
+    process.exit(1);
+  }
   process.exit(0);
 }
 
