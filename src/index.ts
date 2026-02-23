@@ -1,8 +1,8 @@
 
 import type {CommandsRegistry} from "./commands/commands.js";
 import {registerCommand, runCommand} from "./commands/commands.js";
-import {handlerLogin} from "./commands/login_command.js";
-import {handlerRegister} from "./commands/register_command.js";
+import {handlerLogin} from "./commands/users/login_command.js";
+import {handlerRegister} from "./commands/users/register_command.js";
 
 async function main() {
   
