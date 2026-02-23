@@ -3,7 +3,7 @@ import type {CommandsRegistry} from "./commands/commands.js";
 import {registerCommand, runCommand} from "./commands/commands.js";
 import {handlerLogin} from "./commands/login_command.js";
 
-function main() {
+async function main() {
   
   const args = process.argv.slice(2);
 
@@ -18,8 +18,9 @@ function main() {
   
   registerCommand(registry, "login", handlerLogin);
   
-  runCommand(registry, commandName, ...commandArgs);
+  await runCommand(registry, commandName, ...commandArgs);
   
+  process.exit(0);
 }
 
 main();

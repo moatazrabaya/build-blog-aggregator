@@ -1,7 +1,7 @@
 
 import {setUser} from "../config.js";
 
-export function handlerLogin(cmdName: string, ...args: string[]): void{
+export async function handlerLogin(cmdName: string, ...args: string[]): Promise<void>{
 
     if(args.length !== 1){
         throw new Error("The login command expects a single argument, the username")
