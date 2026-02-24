@@ -4,6 +4,7 @@ import {registerCommand, runCommand} from "./commands/commands.js";
 import {handlerLogin} from "./commands/users/login_command.js";
 import {handlerRegister} from "./commands/users/register_command.js";
 import {handlerReset} from "./commands/users/reset_command.js";
+import {handlerUsers} from "./commands/users/users_command.js";
 
 async function main() {
   
@@ -23,6 +24,8 @@ async function main() {
   registerCommand(registry, "register", handlerRegister);
 
   registerCommand(registry, "reset", handlerReset);
+
+  registerCommand(registry, "users", handlerUsers);
   
   try{
     await runCommand(registry, commandName, ...commandArgs);
