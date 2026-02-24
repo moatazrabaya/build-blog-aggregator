@@ -1,8 +1,8 @@
 
-import {createFeed} from "../lib/db/queries/feeds.js";
-import {readConfig} from "../config.js";
-import {getUser} from "../lib/db/queries/users.js";
-import type { Feed, User } from "../lib/db/schema.js";
+import {createFeed} from "../../lib/db/queries/feeds.js";
+import {readConfig} from "../../config.js";
+import {getUser} from "../../lib/db/queries/users.js";
+import type { Feed, User } from "../../lib/db/schema.js";
 
 export async function handlerAddFeed(cmdName: string, ...args: string[]): Promise<void>{
 

@@ -1,6 +1,6 @@
 
-import {getFeeds} from "../lib/db/queries/feeds.js";
-import {getUserById} from "../lib/db/queries/users.js";
+import {getFeeds} from "../../lib/db/queries/feeds.js";
+import {getUserById} from "../../lib/db/queries/users.js";
 
 export async function handlerFeeds(cmdName: string, ...args: string[]): Promise<void>{
 

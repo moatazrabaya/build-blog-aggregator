@@ -6,8 +6,8 @@ import {handlerRegister} from "./commands/users/register_command.js";
 import {handlerReset} from "./commands/users/reset_command.js";
 import {handlerUsers} from "./commands/users/users_command.js";
 import {handlerAgg} from "./commands/agg_command.js";
-import {handlerAddFeed} from "./commands/addfeed_command.js";
-import {handlerFeeds} from "./commands/feeds_command.js";
+import {handlerAddFeed} from "./commands/feeds/addfeed_command.js";
+import {handlerFeeds} from "./commands/feeds/feeds_command.js";
 
 async function main() {
   
