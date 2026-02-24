@@ -7,6 +7,7 @@ import {handlerReset} from "./commands/users/reset_command.js";
 import {handlerUsers} from "./commands/users/users_command.js";
 import {handlerAgg} from "./commands/agg_command.js";
 import {handlerAddFeed} from "./commands/addfeed_command.js";
+import {handlerFeeds} from "./commands/feeds_command.js";
 
 async function main() {
   
@@ -32,6 +33,8 @@ async function main() {
   registerCommand(registry, "agg", handlerAgg);
 
   registerCommand(registry, "addfeed", handlerAddFeed);
+
+  registerCommand(registry, "feeds", handlerFeeds);
   
   try{
     await runCommand(registry, commandName, ...commandArgs);
