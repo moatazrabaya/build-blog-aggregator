@@ -22,6 +22,13 @@
       "when": 1771972916191,
       "tag": "0002_melodic_giant_man",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1771977201658,
+      "tag": "0003_overjoyed_daimon_hellstrom",
+      "breakpoints": true
     }
   ]
 }
