@@ -3,6 +3,7 @@ import {createFeed} from "../../lib/db/queries/feeds.js";
 import {readConfig} from "../../config.js";
 import {getUser} from "../../lib/db/queries/users.js";
 import type { Feed, User } from "../../lib/db/schema.js";
+import {insertFeedFollow} from "../../lib/db/queries/feed_follows.js";
 
 export async function handlerAddFeed(cmdName: string, ...args: string[]): Promise<void>{
 
@@ -24,6 +25,9 @@ export async function handlerAddFeed(cmdName: string, ...args: string[]): Promis
     const feed = await createFeed(feedName, feedUrl, currentUser.id);
 
     console.log("Feed created successfully:");
+
+    await insertFeedFollow(currentUser.id, feed.id);
+
     printFeed(feed, currentUser);
 }
 
