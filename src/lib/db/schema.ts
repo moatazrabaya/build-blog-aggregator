@@ -22,7 +22,8 @@ export const feeds = pgTable("feeds", {
     .$onUpdate(() => new Date()),
   name: text("name").notNull(),
   url: text("url").notNull().unique(),
-  user_id: uuid("user_id").references(() => users.id, { onDelete: "cascade" }).notNull()
+  user_id: uuid("user_id").references(() => users.id, { onDelete: "cascade" }).notNull(),
+  last_fetched_at: timestamp("last_fetched_at"),
 });
 
 export type Feed = typeof feeds.$inferSelect;

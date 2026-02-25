@@ -17,3 +17,16 @@ export async function getFeedByUrl(url: string) {
     const [result] = await db.select().from(feeds).where(eq(feeds.url, url));
     return result;
 }
+
+export async function getFeedById(id: string) {
+    const [result] = await db.select().from(feeds).where(eq(feeds.id, id));
+    return result;
+}
+
+export async function updateFeedTime (id: string){
+    await db.update(feeds)
+            .set({
+                last_fetched_at: new Date()
+            })  
+            .where(eq(feeds.id, id));
+}
