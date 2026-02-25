@@ -1,11 +1,9 @@
 
 import {createFeed} from "../../lib/db/queries/feeds.js";
-import {readConfig} from "../../config.js";
-import {getUser} from "../../lib/db/queries/users.js";
 import type { Feed, User } from "../../lib/db/schema.js";
 import {insertFeedFollow} from "../../lib/db/queries/feed_follows.js";
 
-export async function handlerAddFeed(cmdName: string, ...args: string[]): Promise<void>{
+export async function handlerAddFeed (cmdName: string, user: User, ...args: string[]) {
 
     if(args.length !== 2){
         throw new Error("The register command expects two arguments, the feed name and the url of the feed");
@@ -14,24 +12,16 @@ export async function handlerAddFeed(cmdName: string, ...args: string[]): Promis
     const feedName = args[0];
     const feedUrl = args[1];
 
-    const currentUserName = readConfig().currentUsername;
-
-    const currentUser = await getUser(currentUserName);
-
-    if(!currentUser){
-        throw new Error(`User ${currentUserName} not found`);
-    }
-
-    const feed = await createFeed(feedName, feedUrl, currentUser.id);
+    const feed = await createFeed(feedName, feedUrl, user.id);
 
     console.log("Feed created successfully:");
 
-    await insertFeedFollow(currentUser.id, feed.id);
+    await insertFeedFollow(user.id, feed.id);
 
-    printFeed(feed, currentUser);
+    printFeed(feed, user);
 }
 
-export function printFeed(feed: Feed, user: User){
+function printFeed(feed: Feed, user: User){
     console.log(`## Feed ID:       ${feed.id}`);
     console.log(`## Creation Time: ${feed.createdAt}`);
     console.log(`## Update Time:   ${feed.updatedAt}`);
