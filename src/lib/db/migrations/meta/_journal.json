@@ -43,6 +43,13 @@
       "when": 1772047279343,
       "tag": "0005_mysterious_captain_stacy",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1772052381273,
+      "tag": "0006_slimy_karen_page",
+      "breakpoints": true
     }
   ]
 }

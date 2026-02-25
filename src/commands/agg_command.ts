@@ -1,9 +1,10 @@
 
 import {fetchFeed} from "../lib/rss.js";
-import {updateFeedTime, getFeedById} from "../lib/db/queries/feeds";
-import { feeds } from "../lib/db/schema";
+import {updateFeedTime, getFeedById} from "../lib/db/queries/feeds.js";
+import {feeds, Post} from "../lib/db/schema.js";
 import {db} from "../lib/db/index.js";
 import { sql} from 'drizzle-orm';
+import {createPost} from "../lib/db/queries/posts.js";
 
 export async function handlerAgg(cmdName: string, ...args: string[]): Promise<void>{
 
@@ -45,12 +46,23 @@ export async function scrapeFeeds() {
 
     const fetchedFeed = await fetchFeed(feed.url);
 
-     console.log(
-    `-> Feed ${feed.name} collected, ${fetchedFeed.channel.item.length} posts found:`,
-  );
+    console.log(`-> Feed ${feed.name} collected, ${fetchedFeed.channel.item.length} posts found`);
+    
+    for(const item of fetchedFeed?.channel.item){
 
-    for(const item of fetchedFeed?.channel.item)
-        console.log(`   ** ${item?.title}`);
+        console.log(`   ** Found post: %s`, item.title);
+
+        await createPost({
+        url: item.link,
+        feed_id: feed.id,
+        title: item.title,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        description: item.description,
+        published_at: new Date(item.pubDate),
+        } satisfies Post);
+    }
+
     console.log("----------------------------------------------------------------------------");
 }
 
