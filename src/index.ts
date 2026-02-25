@@ -11,6 +11,7 @@ import {handlerFeeds} from "./commands/feeds/feeds_command.js";
 import {handlerFollow} from "./commands/follow_command.js";
 import {handlerFollowing} from "./commands/following_command.js";
 import {middlewareLoggedIn} from "./middlewares/loggedIn_middleware.js";
+import {handlerUnfollow} from "./commands/unfollow_command.js";
 
 async function main() {
   
@@ -42,6 +43,8 @@ async function main() {
   registerCommand(registry, "follow", middlewareLoggedIn(handlerFollow));
 
   registerCommand(registry, "following", middlewareLoggedIn(handlerFollowing));
+
+  registerCommand(registry, "unfollow", middlewareLoggedIn(handlerUnfollow));
   
   try{
     await runCommand(registry, commandName, ...commandArgs);
