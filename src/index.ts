@@ -8,6 +8,8 @@ import {handlerUsers} from "./commands/users/users_command.js";
 import {handlerAgg} from "./commands/agg_command.js";
 import {handlerAddFeed} from "./commands/feeds/addfeed_command.js";
 import {handlerFeeds} from "./commands/feeds/feeds_command.js";
+import {handlerFollow} from "./commands/follow_command.js";
+import {handlerFollowing} from "./commands/following_command.js";
 
 async function main() {
   
@@ -35,6 +37,11 @@ async function main() {
   registerCommand(registry, "addfeed", handlerAddFeed);
 
   registerCommand(registry, "feeds", handlerFeeds);
+
+  registerCommand(registry, "follow", handlerFollow);
+
+  registerCommand(registry, "following", handlerFollowing);
+  
   
   try{
     await runCommand(registry, commandName, ...commandArgs);
